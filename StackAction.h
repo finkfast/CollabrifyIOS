@@ -11,12 +11,12 @@
 
 @interface StackAction : NSObject
 {
-    char letter;
+    NSString* text;
     int action;
 }
 
--(char)getLetter;
--(void)setLetter:(char)inLetter;
+-(NSString*)getText;
+-(void)setText:(NSString*)inText;
 -(int)getAction;
 -(void)setAction:(int)inAction;
 @end

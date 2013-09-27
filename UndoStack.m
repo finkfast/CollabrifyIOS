@@ -21,15 +21,15 @@
     return self;
 }
 
-- (void)push:(StackAction*)anObject
+- (void)push:(NSString*)anObject
 {
     [array addObject:anObject];
     size = array.count;
 }
 
-- (StackAction*)pop
+- (NSString*)pop
 {
-    StackAction* temp;
+    NSString* temp;
     if(array.count > 0)
     {
         temp = [array lastObject];

@@ -18,7 +18,6 @@
 
 - (void)undo;
 - (void)redo;
-- (void)insertAddToStack:(id)anObject;
-- (void)deleteAddToStack:(id)anObject;
+- (void)AddToStack:(NSNotification *)note;
 
 @end

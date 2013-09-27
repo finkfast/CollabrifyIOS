@@ -10,14 +10,14 @@
 
 @implementation StackAction
 
--(char)getLetter
+-(NSString*)getText
 {
-    return letter;
+    return text;
 }
 
--(void)setLetter:(char)inLetter
+-(void)setText:(NSString*)inText
 {
-    letter = inLetter;
+    text = inText;
 }
 
 -(int)getAction

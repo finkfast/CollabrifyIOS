@@ -15,6 +15,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.text = @"";
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
     }
     return self;
 }
@@ -25,6 +28,9 @@
     {
         [self setDelegate:self];
     }
+    self.text = @"";
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
     return self;
 }
 
@@ -66,33 +72,31 @@
 
 - (void)undo
 {
-    StackAction* temp = [undoStack pop];
-    [redoStack push:temp];
+    if(undoStack.size > 0)
+    {
+        NSString* temp = [undoStack pop];
+        self.text = temp;
+        [redoStack push:temp];
+    }
 }
 
 - (void)redo
 {
-    StackAction* temp = [redoStack pop];
+    if(redoStack.size > 0)
+    {
+        NSString* temp = [redoStack pop];
+        self.text = temp;
+        [undoStack push:temp];
+    }
+}
+
+- (void)AddToStack:(NSNotification *)note
+{
+    [redoStack emptyTheStack];
+    NSString* temp = self.text;
     [undoStack push:temp];
 }
 
-- (void)insertAddToStack:(id)anObject
-{
-    [redoStack emptyTheStack];
-    StackAction* temp;
-    [temp setAction:INSERT];
-    [temp setLetter:(char)anObject];
-    [undoStack push:anObject];
-}
-
-- (void)deleteAddToStack:(id)anObject
-{
-    [redoStack emptyTheStack];
-    StackAction* temp;
-    [temp setAction:INSERT];
-    [temp setLetter:(char)anObject];
-    [undoStack push:anObject];
-}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
