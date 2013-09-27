@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ZW8-9H-aap">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="gve-vL-VmZ">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="ZW8-9H-aap" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pWF-K9-9yW">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="SsN-Ht-eEx" kind="relationship" relationship="rootViewController" id="gYt-Ti-T2F"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TAn-WI-yJo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-317" y="-709"/>
+        </scene>
+        <!--View Controller - Collabrify WeWrite-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="ASIViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQa-h0-0QJ">
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jVZ-8S-zJR" customClass="LimitedTextView">
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="469" id="efn-OD-geM"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="jVZ-8S-zJR" firstAttribute="centerX" secondItem="vQa-h0-0QJ" secondAttribute="centerX" type="default" id="NDg-HN-QWr"/>
+                                    <constraint firstItem="jVZ-8S-zJR" firstAttribute="trailing" secondItem="vQa-h0-0QJ" secondAttribute="trailing" type="default" id="hg9-R8-CAr"/>
+                                    <constraint firstItem="jVZ-8S-zJR" firstAttribute="leading" secondItem="vQa-h0-0QJ" secondAttribute="leading" type="default" id="jJ3-cv-vlM"/>
+                                    <constraint firstItem="jVZ-8S-zJR" firstAttribute="top" secondItem="vQa-h0-0QJ" secondAttribute="top" type="default" id="mTc-c8-AQV"/>
+                                    <constraint firstAttribute="bottom" secondItem="jVZ-8S-zJR" secondAttribute="bottom" constant="-9" id="nhE-Jj-QTk"/>
+                                </constraints>
+                            </scrollView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UU7-W8-Afa">
+                                <items>
+                                    <barButtonItem title="Undo" width="94" id="llU-Fl-xIm"/>
+                                    <barButtonItem title="Redo" width="98" id="Rhl-kO-30H"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vQa-h0-0QJ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="1mI-K5-mT0"/>
+                            <constraint firstItem="UU7-W8-Afa" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="Kf6-Rw-eXi"/>
+                            <constraint firstItem="UU7-W8-Afa" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="M7Y-6k-EDK"/>
+                            <constraint firstItem="UU7-W8-Afa" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="ZXT-ar-h1e"/>
+                            <constraint firstItem="vQa-h0-0QJ" firstAttribute="top" secondItem="UU7-W8-Afa" secondAttribute="bottom" type="default" id="tOw-4U-55L"/>
+                            <constraint firstItem="vQa-h0-0QJ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="vIh-gj-4ZT"/>
+                            <constraint firstItem="vQa-h0-0QJ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="x0d-P8-YfY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Collabrify WeWrite" id="mID-e1-NFd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="510" y="-709"/>
+        </scene>
+        <!--View Controller - Menu-->
+        <scene sceneID="2C2-Nq-mU7">
+            <objects>
+                <viewController id="SsN-Ht-eEx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rmA-op-cIu">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRW-gN-dGG">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Start Session">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2" kind="push" id="JfT-QQ-xn5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bRW-gN-dGG" firstAttribute="centerX" secondItem="rmA-op-cIu" secondAttribute="centerX" type="default" id="ZlU-QX-4gb"/>
+                            <constraint firstItem="bRW-gN-dGG" firstAttribute="top" secondItem="rmA-op-cIu" secondAttribute="top" constant="252" id="kIu-6S-Y8t"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Menu" id="tR9-Oe-HFn"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wpu-IZ-v1r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="96" y="-709"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
