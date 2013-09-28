@@ -24,7 +24,7 @@
 - (void)push:(NSString*)anObject
 {
     [array addObject:anObject];
-    size = array.count;
+    size = size + 1;
 }
 
 - (NSString*)pop
@@ -34,7 +34,7 @@
     {
         temp = [array lastObject];
         [array removeLastObject];
-        size = array.count;
+        size = size - 1;
     }
     return temp;
 }

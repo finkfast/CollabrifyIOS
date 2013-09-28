@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LimitedTextView.h"
 
 @interface ASIViewController : UIViewController
 

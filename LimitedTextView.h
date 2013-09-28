@@ -12,12 +12,19 @@
 
 @interface LimitedTextView : UITextView <UITextViewDelegate>
 {
-    UndoStack* undoStack;
-    UndoStack* redoStack;
+    NSMutableArray* undoArray;
+    NSMutableArray* redoArray;
+    NSString* current;
+    BOOL readonly;
 }
 
 - (void)undo;
 - (void)redo;
+- (void)undoPush:(id)anObject;
+- (id)undoPop;
+- (void)redoPush:(id)anObject;
+- (id)redoPop;
+- (void)emptyTheStack;
 - (void)AddToStack:(NSNotification *)note;
 
 @end

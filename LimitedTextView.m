@@ -15,9 +15,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        undoArray = [[NSMutableArray alloc] init];
+        redoArray = [[NSMutableArray alloc] init];
         self.text = @"";
+        current = @"";
+        readonly = false;
         [[NSNotificationCenter defaultCenter]
          addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
+        
     }
     return self;
 }
@@ -29,6 +34,10 @@
         [self setDelegate:self];
     }
     self.text = @"";
+    current = @"";
+    undoArray = [[NSMutableArray alloc] init];
+    redoArray = [[NSMutableArray alloc] init];
+    readonly = false;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
     return self;
@@ -37,11 +46,15 @@
 -(BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
     if (action == @selector(paste:))
+    {
         return NO;
+    }
     else if (action == @selector(copy:))
         return NO;
     else if (action == @selector(cut:))
+    {
         return NO;
+    }
     else if (action == @selector(select:))
         return NO;
     else if (action == @selector(selectAll:))
@@ -56,7 +69,6 @@
     {
         return YES;
     }
-    
     return NO;
 }
 
@@ -70,31 +82,85 @@
     [super addGestureRecognizer:gestureRecognizer];
 }
 
+- (void)cut:(id)sender //undo
+{
+    readonly = true;
+    [self undo];
+    readonly = false;
+}
+
+- (void)paste:(id)sender //redo
+{
+    readonly = true;
+    [self redo];
+    readonly = false;
+}
+
+- (void)AddToStack:(NSNotification *)note
+{
+    if(!readonly)
+    {
+        [self emptyTheStack];
+        [self undoPush:current];
+        current = self.text;
+    }
+}
+
 - (void)undo
 {
-    if(undoStack.size > 0)
+    if(undoArray.count > 0)
     {
-        NSString* temp = [undoStack pop];
-        self.text = temp;
-        [redoStack push:temp];
+        [self redoPush:current];
+        current = [self undoPop];
+        self.text = current;
     }
 }
 
 - (void)redo
 {
-    if(redoStack.size > 0)
+    if(redoArray.count > 0)
     {
-        NSString* temp = [redoStack pop];
-        self.text = temp;
-        [undoStack push:temp];
+        [self undoPush:current];
+        current = [self redoPop];
+        self.text = current;
     }
 }
 
-- (void)AddToStack:(NSNotification *)note
+- (void)emptyTheStack
 {
-    [redoStack emptyTheStack];
-    NSString* temp = self.text;
-    [undoStack push:temp];
+    [redoArray removeAllObjects];
+}
+
+- (void)undoPush:(NSString*)anObject
+{
+    [undoArray addObject:anObject];
+}
+
+- (NSString*)undoPop
+{
+    NSString* temp;
+    if(undoArray.count > 0)
+    {
+        temp = [undoArray lastObject];
+        [undoArray removeLastObject];
+    }
+    return temp;
+}
+
+- (void)redoPush:(NSString*)anObject
+{
+    [redoArray addObject:anObject];
+}
+
+- (NSString*)redoPop
+{
+    NSString* temp;
+    if(redoArray.count > 0)
+    {
+        temp = [redoArray lastObject];
+        [redoArray removeLastObject];
+    }
+    return temp;
 }
 
 /*
