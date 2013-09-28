@@ -21,7 +21,8 @@
         redoArray1 = [[NSMutableArray alloc] init];
         self.text = @"";
         current = @"";
-        readonly = false;
+        current3 = @"false";
+    readonly = false;
         [[NSNotificationCenter defaultCenter]
          addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
     }
