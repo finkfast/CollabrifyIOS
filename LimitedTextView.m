@@ -8,6 +8,8 @@
 
 #import "LimitedTextView.h"
 
+//true = insert
+//false = remove
 @implementation LimitedTextView
 
 - (id)initWithFrame:(CGRect)frame
@@ -15,14 +17,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        undoArray = [[NSMutableArray alloc] init];
-        redoArray = [[NSMutableArray alloc] init];
+        undoArray1 = [[NSMutableArray alloc] init];
+        redoArray1 = [[NSMutableArray alloc] init];
         self.text = @"";
         current = @"";
         readonly = false;
         [[NSNotificationCenter defaultCenter]
          addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
-        
     }
     return self;
 }
@@ -35,8 +36,15 @@
     }
     self.text = @"";
     current = @"";
-    undoArray = [[NSMutableArray alloc] init];
-    redoArray = [[NSMutableArray alloc] init];
+    current3 = @"false";
+    cursorPos = [self selectedRange];
+    currentSize = 0;
+    undoArray1 = [[NSMutableArray alloc] init];
+    redoArray1 = [[NSMutableArray alloc] init];
+    undoArray2 = [[NSMutableArray alloc] init];
+    redoArray2 = [[NSMutableArray alloc] init];
+    undoArray3 = [[NSMutableArray alloc] init];
+    redoArray3 = [[NSMutableArray alloc] init];
     readonly = false;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
@@ -46,15 +54,11 @@
 -(BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
     if (action == @selector(paste:))
-    {
         return NO;
-    }
     else if (action == @selector(copy:))
         return NO;
     else if (action == @selector(cut:))
-    {
         return NO;
-    }
     else if (action == @selector(select:))
         return NO;
     else if (action == @selector(selectAll:))
@@ -102,23 +106,32 @@
     {
         [self emptyTheStack];
         [self undoPush:current];
+        if(current.length > [self.text length])
+        {
+            current3 = @"false";
+        }
+        else
+        {
+            current3 = @"true";
+        }
+        cursorPos = [self selectedRange];
         current = self.text;
     }
 }
 
 - (void)undo
 {
-    if(undoArray.count > 0)
+    if(undoArray1.count > 0)
     {
         [self redoPush:current];
-        current = [self undoPop];
+        current = [self undoPop];        
         self.text = current;
     }
 }
 
 - (void)redo
 {
-    if(redoArray.count > 0)
+    if(redoArray1.count > 0)
     {
         [self undoPush:current];
         current = [self redoPop];
@@ -128,37 +141,53 @@
 
 - (void)emptyTheStack
 {
-    [redoArray removeAllObjects];
+    [redoArray1 removeAllObjects];
+    [redoArray2 removeAllObjects];
+    [redoArray3 removeAllObjects];
 }
 
 - (void)undoPush:(NSString*)anObject
 {
-    [undoArray addObject:anObject];
+    [undoArray1 addObject:anObject];
+    NSString* var = NSStringFromRange(cursorPos);
+    [undoArray2 addObject:var];
+    [undoArray3 addObject:current3];
 }
 
 - (NSString*)undoPop
 {
     NSString* temp;
-    if(undoArray.count > 0)
+    if(undoArray1.count > 0)
     {
-        temp = [undoArray lastObject];
-        [undoArray removeLastObject];
+        temp = [undoArray1 lastObject];
+        [undoArray1 removeLastObject];
+        NSString* var = [undoArray2 lastObject];
+        cursorPos = NSRangeFromString(var);
+        current3 = [undoArray3 lastObject];
+        [undoArray3 removeLastObject];
     }
     return temp;
 }
 
 - (void)redoPush:(NSString*)anObject
 {
-    [redoArray addObject:anObject];
+    [redoArray1 addObject:anObject];
+    NSString* var = NSStringFromRange(cursorPos);
+    [redoArray2 addObject:var];
+    [redoArray3 addObject:current3];
 }
 
 - (NSString*)redoPop
 {
     NSString* temp;
-    if(redoArray.count > 0)
+    if(redoArray1.count > 0)
     {
-        temp = [redoArray lastObject];
-        [redoArray removeLastObject];
+        temp = [redoArray1 lastObject];
+        [redoArray1 removeLastObject];
+        NSString* var = [redoArray2 lastObject];
+        cursorPos = NSRangeFromString(var);
+        current3 = [redoArray3 lastObject];
+        [redoArray3 removeLastObject];
     }
     return temp;
 }

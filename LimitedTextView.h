@@ -7,15 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UndoStack.h"
 
 
 @interface LimitedTextView : UITextView <UITextViewDelegate>
 {
-    NSMutableArray* undoArray;
-    NSMutableArray* redoArray;
+    NSMutableArray* undoArray1;//char
+    NSMutableArray* undoArray2;//index
+    NSMutableArray* undoArray3;//bool
+    NSMutableArray* redoArray1;
+    NSMutableArray* redoArray2;
+    NSMutableArray* redoArray3;
     NSString* current;
+    NSRange cursorPos;
+    NSString* current3;
     BOOL readonly;
+    int currentSize;
 }
 
 - (void)undo;
