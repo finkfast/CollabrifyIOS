@@ -20,6 +20,8 @@
     NSString* current;
     NSRange cursorPos;
     NSString* current3;
+    NSString* false_;
+    NSString* true_;
     BOOL readonly;
     int currentSize;
 }
@@ -32,5 +34,13 @@
 - (id)redoPop;
 - (void)emptyTheStack;
 - (void)AddToStack:(NSNotification *)note;
+- (void)redoinsert:(id)input;
+- (void)redodeleteChar:(id)toDelete;
+- (void)undoinsert:(id)input;
+- (void)undodeleteChar:(id)toDelete;
+- (void)reflectDelete:(int)measure;
+- (void)reflectInsert:(int)measure;
+- (void)insertTextFromSession:(NSString*)input;
+
 
 @end

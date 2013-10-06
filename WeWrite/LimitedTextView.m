@@ -22,7 +22,7 @@
         self.text = @"";
         current = @"";
         current3 = @"false";
-    readonly = false;
+        readonly = false;
         [[NSNotificationCenter defaultCenter]
          addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
     }
@@ -37,8 +37,8 @@
     }
     self.text = @"";
     current = @"";
-    current3 = @"false";
-    cursorPos = [self selectedRange];
+    //current3 = @"false";
+    //cursorPos = [self selectedRange];
     currentSize = 0;
     undoArray1 = [[NSMutableArray alloc] init];
     redoArray1 = [[NSMutableArray alloc] init];
@@ -64,7 +64,8 @@
         return NO;
     else if (action == @selector(selectAll:))
         return NO;
-    
+    else if (action == @selector(correctionCheckingResultWithRange:replacementString:))
+        return NO;
     return [super canPerformAction:action withSender:sender];
 }
 
@@ -106,16 +107,24 @@
     if(!readonly)
     {
         [self emptyTheStack];
-        [self undoPush:current];
+        NSString* toAdd;
+        NSRange grab = [self selectedRange];
+        grab.length++;
         if(current.length > [self.text length])
         {
+            toAdd = [current substringWithRange:grab];
             current3 = @"false";
+            cursorPos = [self selectedRange];
+            [self undoPush:toAdd];
         }
-        else
+        else if(current.length < [self.text length])
         {
+            grab.location--;
+            toAdd = [self.text substringWithRange:grab];
             current3 = @"true";
+            cursorPos = [self selectedRange];
+            [self undoPush:toAdd];
         }
-        cursorPos = [self selectedRange];
         current = self.text;
     }
 }
@@ -124,9 +133,16 @@
 {
     if(undoArray1.count > 0)
     {
-        [self redoPush:current];
-        current = [self undoPop];        
-        self.text = current;
+        NSString* temp = [self undoPop];
+        [self redoPush:temp];
+        if([current3 isEqual: @"false"])
+        {
+            [self undoinsert:temp];
+        }
+        else
+        {
+            [self undodeleteChar:temp];
+        }
     }
 }
 
@@ -134,9 +150,16 @@
 {
     if(redoArray1.count > 0)
     {
-        [self undoPush:current];
-        current = [self redoPop];
-        self.text = current;
+        NSString* temp = [self redoPop];
+        [self undoPush:temp];
+        if([current3 isEqual: @"false"])
+        {
+            [self redodeleteChar:temp];
+        }
+        else
+        {
+            [self redoinsert:temp];
+        }
     }
 }
 
@@ -163,6 +186,7 @@
         temp = [undoArray1 lastObject];
         [undoArray1 removeLastObject];
         NSString* var = [undoArray2 lastObject];
+        [undoArray2 removeLastObject];
         cursorPos = NSRangeFromString(var);
         current3 = [undoArray3 lastObject];
         [undoArray3 removeLastObject];
@@ -186,11 +210,147 @@
         temp = [redoArray1 lastObject];
         [redoArray1 removeLastObject];
         NSString* var = [redoArray2 lastObject];
+        [redoArray2 removeLastObject];
         cursorPos = NSRangeFromString(var);
         current3 = [redoArray3 lastObject];
         [redoArray3 removeLastObject];
     }
     return temp;
+}
+
+- (void)redoinsert:(id)input
+{
+    NSString* temp;
+    NSString* temp1;
+    if(self.text.length > 0)
+    {
+        if(cursorPos.location == 0)
+        {
+            temp1 = [self.text substringToIndex:cursorPos.location];
+            temp1 = [temp1 stringByAppendingString:input];
+            temp = [self.text substringFromIndex:cursorPos.location];
+            temp1 = [temp1 stringByAppendingString:temp];
+        }
+        else
+        {
+            temp1 = [self.text substringToIndex:cursorPos.location - 1];
+            temp1 = [temp1 stringByAppendingString:input];
+            temp = [self.text substringFromIndex:cursorPos.location - 1];
+            temp1 = [temp1 stringByAppendingString:temp];
+        }
+    }
+    else
+    {
+        temp1 = input;
+    }
+    self.text = temp1;
+}
+
+- (void)redodeleteChar:(id)toDelete
+{
+    NSString* temp;
+    NSString* temp1;
+    temp1 = [self.text substringToIndex:cursorPos.location];
+    temp = [self.text substringFromIndex:cursorPos.location + 1];
+    temp1 = [temp1 stringByAppendingString:temp];
+    self.text = temp1;
+}
+
+- (void)undoinsert:(id)input
+{
+    NSString* temp;
+    NSString* temp1;
+    if(self.text.length > 0)
+    {
+        if(cursorPos.location == 0)
+        {
+            temp1 = [self.text substringToIndex:cursorPos.location];
+            temp1 = [temp1 stringByAppendingString:input];
+            temp = [self.text substringFromIndex:cursorPos.location];
+            temp1 = [temp1 stringByAppendingString:temp];
+        }
+        else
+        {
+            temp1 = [self.text substringToIndex:cursorPos.location];
+            temp1 = [temp1 stringByAppendingString:input];
+            temp = [self.text substringFromIndex:cursorPos.location];
+            temp1 = [temp1 stringByAppendingString:temp];
+        }
+    }
+    else
+    {
+        temp1 = input;
+    }
+    self.text = temp1;
+}
+
+- (void)undodeleteChar:(id)toDelete
+{
+    NSString* temp;
+    NSString* temp1;
+    temp1 = [self.text substringToIndex:cursorPos.location - 1];
+    temp = [self.text substringFromIndex:cursorPos.location];
+    temp1 = [temp1 stringByAppendingString:temp];
+    self.text = temp1;
+}
+
+- (void)reflectDelete:(int)measure
+{
+    for(int i = 0; i < undoArray2.count; i++)
+    {
+        NSString* var = [undoArray2 objectAtIndex:i];
+        NSRange temp = NSRangeFromString(var);
+        if(temp.location > measure)
+        {
+            temp.location--;
+            var = NSStringFromRange(temp);
+            [undoArray2 setObject:var atIndexedSubscript:i];
+        }
+    }
+    for(int i = 0; i < redoArray2.count; i++)
+    {
+        NSString* var = [redoArray2 objectAtIndex:i];
+        NSRange temp = NSRangeFromString(var);
+        if(temp.location > measure)
+        {
+            temp.location--;
+            var = NSStringFromRange(temp);
+            [redoArray2 setObject:var atIndexedSubscript:i];
+        }
+    }
+}
+
+- (void)reflectInsert:(int)measure
+{
+    for(int i = 0; i < undoArray2.count; i++)
+    {
+        NSString* var = [undoArray2 objectAtIndex:i];
+        NSRange temp = NSRangeFromString(var);
+        if(temp.location >= measure)
+        {
+            temp.location++;
+            var = NSStringFromRange(temp);
+            [undoArray2 setObject:var atIndexedSubscript:i];
+        }
+    }
+    for(int i = 0; i < redoArray2.count; i++)
+    {
+        NSString* var = [redoArray2 objectAtIndex:i];
+        NSRange temp = NSRangeFromString(var);
+        if(temp.location >= measure)
+        {
+            temp.location++;
+            var = NSStringFromRange(temp);
+            [redoArray2 setObject:var atIndexedSubscript:i];
+        }
+    }
+
+}
+
+//receive text from session at launch
+- (void)insertTextFromSession:(NSString *)input
+{
+    self.text = input;
 }
 
 /*
