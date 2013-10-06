@@ -56,7 +56,8 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1As-nM-fr0">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="84" id="0vC-WF-KT7"/>
+                                    <constraint firstAttribute="height" constant="42" id="Sxj-vQ-hWe"/>
+                                    <constraint firstAttribute="width" constant="75" id="bJH-FT-yoy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal">
@@ -95,7 +96,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWg-Wh-ZUT">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="151" id="R6s-Gj-1Gl"/>
+                                    <constraint firstAttribute="width" constant="155" id="bd2-lh-ijy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Leave Session">
@@ -113,18 +114,16 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vQa-h0-0QJ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="1mI-K5-mT0"/>
-                            <constraint firstItem="qWg-Wh-ZUT" firstAttribute="centerY" secondItem="X8g-Wf-aGW" secondAttribute="centerY" type="default" id="4bE-UH-UNx"/>
+                            <constraint firstItem="1As-nM-fr0" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="81R-rl-ZVh"/>
                             <constraint firstItem="vQa-h0-0QJ" firstAttribute="top" secondItem="3" secondAttribute="top" constant="44" id="8U6-zz-w0t"/>
-                            <constraint firstItem="X8g-Wf-aGW" firstAttribute="bottom" secondItem="qWg-Wh-ZUT" secondAttribute="bottom" type="default" id="Hoo-mg-VRU"/>
-                            <constraint firstItem="1As-nM-fr0" firstAttribute="top" secondItem="X8g-Wf-aGW" secondAttribute="top" type="default" id="J6W-pS-IE1"/>
+                            <constraint firstItem="X8g-Wf-aGW" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="76" id="G6i-KG-q7Q"/>
                             <constraint firstItem="qWg-Wh-ZUT" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="L9T-rj-yLh"/>
+                            <constraint firstItem="1As-nM-fr0" firstAttribute="bottom" secondItem="X8g-Wf-aGW" secondAttribute="bottom" type="default" id="N5N-mR-TID"/>
                             <constraint firstItem="1As-nM-fr0" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="QEy-BC-tJy"/>
-                            <constraint firstItem="1As-nM-fr0" firstAttribute="centerY" secondItem="X8g-Wf-aGW" secondAttribute="centerY" type="default" id="Yjs-Ek-DTZ"/>
-                            <constraint firstItem="qWg-Wh-ZUT" firstAttribute="baseline" secondItem="X8g-Wf-aGW" secondAttribute="baseline" type="default" id="asG-hh-d0S"/>
-                            <constraint firstItem="qWg-Wh-ZUT" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="eLR-yd-Mvs"/>
+                            <constraint firstItem="qWg-Wh-ZUT" firstAttribute="bottom" secondItem="X8g-Wf-aGW" secondAttribute="bottom" type="default" id="id1-47-bS6"/>
+                            <constraint firstItem="X8g-Wf-aGW" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="ox9-VS-l7R"/>
                             <constraint firstItem="vQa-h0-0QJ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="vIh-gj-4ZT"/>
                             <constraint firstItem="vQa-h0-0QJ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="x0d-P8-YfY"/>
-                            <constraint firstItem="X8g-Wf-aGW" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="83" id="zWk-Ng-ME1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Collabrify WeWrite" id="mID-e1-NFd"/>
