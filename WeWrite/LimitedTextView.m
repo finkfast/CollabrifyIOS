@@ -17,12 +17,20 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        undoArray1 = [[NSMutableArray alloc] init];
-        redoArray1 = [[NSMutableArray alloc] init];
         self.text = @"";
         current = @"";
-        current3 = @"false";
+        //current3 = @"false";
+        //cursorPos = [self selectedRange];
+        currentSize = 0;
+        undoArray1 = [[NSMutableArray alloc] init];
+        redoArray1 = [[NSMutableArray alloc] init];
+        undoArray2 = [[NSMutableArray alloc] init];
+        redoArray2 = [[NSMutableArray alloc] init];
+        undoArray3 = [[NSMutableArray alloc] init];
+        redoArray3 = [[NSMutableArray alloc] init];
         readonly = false;
+        foreignLetter = @"";
+        foreignSpot = 0;
         [[NSNotificationCenter defaultCenter]
          addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
     }
@@ -47,6 +55,8 @@
     undoArray3 = [[NSMutableArray alloc] init];
     redoArray3 = [[NSMutableArray alloc] init];
     readonly = false;
+    foreignLetter = @"";
+    foreignSpot = 0;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
     return self;
@@ -172,6 +182,7 @@
 
 - (void)undoPush:(NSString*)anObject
 {
+    //send signal
     [undoArray1 addObject:anObject];
     NSString* var = NSStringFromRange(cursorPos);
     [undoArray2 addObject:var];
@@ -196,6 +207,7 @@
 
 - (void)redoPush:(NSString*)anObject
 {
+    //send signal
     [redoArray1 addObject:anObject];
     NSString* var = NSStringFromRange(cursorPos);
     [redoArray2 addObject:var];
@@ -351,6 +363,68 @@
 - (void)insertTextFromSession:(NSString *)input
 {
     self.text = input;
+}
+
+- (void)foreignInsert:(NSString*)letter at:(int)spot
+{
+    NSString* temp;
+    NSString* temp1;
+    if(self.text.length > 0)
+    {
+        if(spot == 0)
+        {
+            temp1 = [self.text substringToIndex:spot];
+            temp1 = [temp1 stringByAppendingString:letter];
+            temp = [self.text substringFromIndex:spot];
+            temp1 = [temp1 stringByAppendingString:temp];
+        }
+        else
+        {
+            temp1 = [self.text substringToIndex:spot - 1];
+            temp1 = [temp1 stringByAppendingString:letter];
+            temp = [self.text substringFromIndex:spot - 1];
+            temp1 = [temp1 stringByAppendingString:temp];
+        }
+    }
+    else
+    {
+        temp1 = letter;
+    }
+    self.text = temp1;
+}
+
+- (void)foreignDelete:(int)spot
+{
+    NSString* temp;
+    NSString* temp1;
+    temp1 = [self.text substringToIndex:spot];//subject to change
+    temp = [self.text substringFromIndex:spot + 1];
+    temp1 = [temp1 stringByAppendingString:temp];
+    self.text = temp1;
+}
+
+- (void)receiveEvent//need input variables
+{
+    readonly = true;
+    if(false)
+    {
+        [self foreignDelete:foreignSpot];
+    }
+    else
+    {
+        [self foreignInsert:foreignLetter at:foreignSpot];
+    }
+    readonly = false;
+}
+
+- (void)setForeignLetter:(NSString *)input
+{
+    foreignLetter = input;
+}
+
+- (void)setForeignSpot:(int)input
+{
+    foreignSpot = input;
 }
 
 /*

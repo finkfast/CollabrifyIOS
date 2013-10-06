@@ -24,6 +24,8 @@
     NSString* true_;
     BOOL readonly;
     int currentSize;
+    int foreignSpot;
+    NSString* foreignLetter;
 }
 
 - (void)undo;
@@ -41,6 +43,10 @@
 - (void)reflectDelete:(int)measure;
 - (void)reflectInsert:(int)measure;
 - (void)insertTextFromSession:(NSString*)input;
-
+- (void)foreignInsert:(NSString*)letter at:(int)spot;
+- (void)foreignDelete:(int)spot;
+- (void)receiveEvent;
+- (void)setForeignLetter:(NSString*)input;
+- (void)setForeignSpot:(int)input;
 
 @end
