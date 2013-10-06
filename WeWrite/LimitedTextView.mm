@@ -7,6 +7,7 @@
 //
 
 #import "LimitedTextView.h"
+#import "bufferStuff.h"
 
 //true = insert
 //false = remove

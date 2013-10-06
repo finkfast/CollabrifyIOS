@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C045AAF917F6100A002A9118 /* LimitedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C045AAF817F6100A002A9118 /* LimitedTextView.m */; };
+		C045AAF917F6100A002A9118 /* LimitedTextView.mm in Sources */ = {isa = PBXBuildFile; fileRef = C045AAF817F6100A002A9118 /* LimitedTextView.mm */; };
 		C0831A1317E774B9008EA3F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0831A1217E774B9008EA3F9 /* UIKit.framework */; };
 		C0831A1517E774B9008EA3F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0831A1417E774B9008EA3F9 /* Foundation.framework */; };
 		C0831A1717E774B9008EA3F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0831A1617E774B9008EA3F9 /* CoreGraphics.framework */; };
@@ -68,7 +68,7 @@
 
 /* Begin PBXFileReference section */
 		C045AAF717F6100A002A9118 /* LimitedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedTextView.h; sourceTree = "<group>"; };
-		C045AAF817F6100A002A9118 /* LimitedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedTextView.m; sourceTree = "<group>"; };
+		C045AAF817F6100A002A9118 /* LimitedTextView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LimitedTextView.mm; sourceTree = "<group>"; };
 		C0831A0F17E774B9008EA3F9 /* WeWrite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeWrite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0831A1217E774B9008EA3F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C0831A1417E774B9008EA3F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -249,7 +249,7 @@
 				C0831A2E17E774B9008EA3F9 /* ASIViewController.m */,
 				C0831A1917E774B9008EA3F9 /* Supporting Files */,
 				C045AAF717F6100A002A9118 /* LimitedTextView.h */,
-				C045AAF817F6100A002A9118 /* LimitedTextView.m */,
+				C045AAF817F6100A002A9118 /* LimitedTextView.mm */,
 			);
 			path = WeWrite;
 			sourceTree = "<group>";
@@ -480,7 +480,7 @@
 				C0831A1F17E774B9008EA3F9 /* main.m in Sources */,
 				C0831A2317E774B9008EA3F9 /* ASIAppDelegate.m in Sources */,
 				C0831A2F17E774B9008EA3F9 /* ASIViewController.m in Sources */,
-				C045AAF917F6100A002A9118 /* LimitedTextView.m in Sources */,
+				C045AAF917F6100A002A9118 /* LimitedTextView.mm in Sources */,
 				E6FAFF5C180108430046588B /* data.pb.cc in Sources */,
 				E6FAFF60180108580046588B /* bufferStuff.mm in Sources */,
 				E6FAFFC0180108AC0046588B /* descriptor.cc in Sources */,
