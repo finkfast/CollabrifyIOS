@@ -30,8 +30,6 @@
         undoArray3 = [[NSMutableArray alloc] init];
         redoArray3 = [[NSMutableArray alloc] init];
         readonly = false;
-        foreignLetter = @"";
-        foreignSpot = 0;
         [[NSNotificationCenter defaultCenter]
          addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
     }
@@ -56,8 +54,6 @@
     undoArray3 = [[NSMutableArray alloc] init];
     redoArray3 = [[NSMutableArray alloc] init];
     readonly = false;
-    foreignLetter = @"";
-    foreignSpot = 0;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
     return self;
@@ -436,29 +432,23 @@
     self.text = temp1;
 }
 
-- (void)receiveEvent//need input variables
+- (void)receiveEvent:(NSData*)input
 {
+    details::Event *msg = new details::Event();
+    parseDelimitedProtoBufMessageFromData(*msg, input);
     readonly = true;
     if(false)
     {
-        [self foreignDelete:foreignSpot];
+        [self foreignDelete:msg->index()];
     }
     else
     {
-        [self foreignInsert:foreignLetter at:foreignSpot];
+        NSString *temp = [NSString stringWithCString:msg->variable().c_str() encoding:[NSString defaultCStringEncoding]];
+        [self foreignInsert:temp at:msg->index()];
     }
     readonly = false;
 }
 
-- (void)setForeignLetter:(NSString *)input
-{
-    foreignLetter = input;
-}
-
-- (void)setForeignSpot:(int)input
-{
-    foreignSpot = input;
-}
 
 /*
 // Only override drawRect: if you perform custom drawing.
