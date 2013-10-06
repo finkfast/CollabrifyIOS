@@ -111,7 +111,7 @@
 
 - (void)copy:(id)sender //leaveSessionButton
 {
-   
+   //end collabrify session
 }
 
 
@@ -419,6 +419,7 @@
     {
         temp1 = letter;
     }
+    [self reflectInsert:spot];
     self.text = temp1;
 }
 
@@ -429,6 +430,7 @@
     temp1 = [self.text substringToIndex:spot];//subject to change
     temp = [self.text substringFromIndex:spot + 1];
     temp1 = [temp1 stringByAppendingString:temp];
+    [self reflectDelete:spot];
     self.text = temp1;
 }
 
@@ -437,7 +439,7 @@
     details::Event *msg = new details::Event();
     parseDelimitedProtoBufMessageFromData(*msg, input);
     readonly = true;
-    if(false)
+    if(!msg->action())
     {
         [self foreignDelete:msg->index()];
     }
