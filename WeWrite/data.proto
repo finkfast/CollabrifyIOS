@@ -1,0 +1,5 @@
+message Event {
+	required int32 index = 1;
+	required bool action = 2;
+	optional string variable = 3;
+}
