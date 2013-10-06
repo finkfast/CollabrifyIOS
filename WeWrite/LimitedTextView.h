@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface LimitedTextView : UITextView <UITextViewDelegate>
 {
     NSMutableArray* undoArray1;//char

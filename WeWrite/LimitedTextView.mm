@@ -7,7 +7,7 @@
 //
 
 #import "LimitedTextView.h"
-
+#import "bufferStuff.h"
 
 //true = insert
 //false = remove
@@ -113,6 +113,12 @@
     readonly = false;
 }
 
+- (void)copy:(id)sender //leaveSessionButton
+{
+   
+}
+
+
 - (void)AddToStack:(NSNotification *)note
 {
     if(!readonly)
@@ -154,6 +160,7 @@
         {
             [self undodeleteChar:temp];
         }
+        current = self.text;
     }
 }
 
@@ -171,6 +178,7 @@
         {
             [self redoinsert:temp];
         }
+        current = self.text;
     }
 }
 
