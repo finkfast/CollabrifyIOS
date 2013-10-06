@@ -191,7 +191,19 @@
 
 - (void)undoPush:(NSString*)anObject
 {
-    //send signal
+    details::Event *msg = new details::Event();
+    std::string temp = std::string([anObject UTF8String]);
+    msg->set_variable(temp);
+    if([current3 isEqualToString:@"false"])
+    {
+        msg->set_action(false);
+    }
+    else
+    {
+        msg->set_action(true);
+    }
+    msg->set_index(cursorPos.location);
+    NSData* toBroadcast = dataForProtoBufMessage(*msg);
     [undoArray1 addObject:anObject];
     NSString* var = NSStringFromRange(cursorPos);
     [undoArray2 addObject:var];
@@ -216,7 +228,19 @@
 
 - (void)redoPush:(NSString*)anObject
 {
-    //send signal
+    details::Event *msg = new details::Event();
+    std::string temp = std::string([anObject UTF8String]);
+    msg->set_variable(temp);
+    if([current3 isEqualToString:@"false"])
+    {
+        msg->set_action(false);
+    }
+    else
+    {
+        msg->set_action(true);
+    }
+    msg->set_index(cursorPos.location);
+    NSData* toBroadcast = dataForProtoBufMessage(*msg);
     [redoArray1 addObject:anObject];
     NSString* var = NSStringFromRange(cursorPos);
     [redoArray2 addObject:var];

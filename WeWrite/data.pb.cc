@@ -16,6 +16,8 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
+namespace details {
+
 namespace {
 
 const ::google::protobuf::Descriptor* Event_descriptor_ = NULL;
@@ -78,8 +80,8 @@ void protobuf_AddDesc_data_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\ndata.proto\"8\n\005Event\022\r\n\005index\030\001 \002(\005\022\016\n\006"
-    "action\030\002 \002(\010\022\020\n\010variable\030\003 \001(\t", 70);
+    "\n\ndata.proto\022\007details\"8\n\005Event\022\r\n\005index\030"
+    "\001 \002(\005\022\016\n\006action\030\002 \002(\010\022\020\n\010variable\030\003 \001(\t", 79);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "data.proto", &protobuf_RegisterTypes);
   Event::default_instance_ = new Event();
@@ -399,5 +401,7 @@ void Event::Swap(Event* other) {
 
 
 // @@protoc_insertion_point(namespace_scope)
+
+}  // namespace details
 
 // @@protoc_insertion_point(global_scope)

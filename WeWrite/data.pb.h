@@ -26,6 +26,8 @@
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
+namespace details {
+
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_data_2eproto();
 void protobuf_AssignDesc_data_2eproto();
@@ -115,7 +117,7 @@ class Event : public ::google::protobuf::Message {
   inline ::std::string* release_variable();
   inline void set_allocated_variable(::std::string* variable);
 
-  // @@protoc_insertion_point(class_scope:Event)
+  // @@protoc_insertion_point(class_scope:details.Event)
  private:
   inline void set_has_index();
   inline void clear_has_index();
@@ -263,6 +265,8 @@ inline void Event::set_allocated_variable(::std::string* variable) {
 
 
 // @@protoc_insertion_point(namespace_scope)
+
+}  // namespace details
 
 #ifndef SWIG
 namespace google {
