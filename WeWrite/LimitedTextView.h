@@ -17,6 +17,14 @@
     NSMutableArray* redoArray1;
     NSMutableArray* redoArray2;
     NSMutableArray* redoArray3;
+    NSMutableArray* localVsServer1;
+    NSMutableArray* localVsServer2;
+    NSMutableArray* localVsServer3;
+    NSMutableArray* rewind1;
+    NSMutableArray* rewind2;
+    NSMutableArray* rewind3;
+    NSMutableArray* localnumber;
+    NSMutableArray* rewindnumber;
     NSString* current;
     NSRange cursorPos;
     NSString* current3;
@@ -46,5 +54,6 @@
 - (void)foreignInsert:(NSString*)letter at:(int)spot;
 - (void)foreignDelete:(int)spot;
 - (void)receiveEvent:(NSData*)input;
+- (void)rollItBack:(int32_t)number;
 
 @end

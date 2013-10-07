@@ -167,7 +167,7 @@
              }
          }];
     }
-    if([[alertView buttonTitleAtIndex:0] isEqualToString:@"Enter"])
+    if([[alertView buttonTitleAtIndex:0] isEqualToString:@"Okay"])
     {
         [[[self text] limit] setHidden:true];
     }
@@ -198,6 +198,14 @@
     if(![eventType isEqualToString:[self userName]])
     {
         NSLog(@"I hear ya");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[[self text] limit]receiveEvent:data];
+        });
+    }
+    else
+    {
+        NSLog(@"Time to Rewind");
+        [[[self text] limit] rollItBack:submissionRegistrationID];
         dispatch_async(dispatch_get_main_queue(), ^{
             [[[self text] limit]receiveEvent:data];
         });

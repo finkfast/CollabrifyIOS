@@ -52,6 +52,12 @@
     redoArray2 = [[NSMutableArray alloc] init];
     undoArray3 = [[NSMutableArray alloc] init];
     redoArray3 = [[NSMutableArray alloc] init];
+    localVsServer1 = [[NSMutableArray alloc] init];
+    localVsServer2 = [[NSMutableArray alloc] init];
+    localVsServer3 = [[NSMutableArray alloc] init];
+    rewind1 = [[NSMutableArray alloc] init];
+    rewind2 = [[NSMutableArray alloc] init];
+    rewind3 = [[NSMutableArray alloc] init];
     [[self client] setDelegate:self];
     [[self client] setDataSource:self];
     //[[self client] ]
@@ -201,10 +207,14 @@
         msg->set_action(true);
     }
     msg->set_index(cursorPos.location);
+    [localVsServer1 addObject:anObject];
+    [localVsServer3 addObject:current3];
     NSData* toBroadcast = dataForProtoBufMessage(*msg);
-    [[self client] broadcast:toBroadcast eventType:[self userName]];
+    int32_t submissionId = [[self client] broadcast:toBroadcast eventType:[self userName]];
     [undoArray1 addObject:anObject];
+    cursorPos.length = submissionId;
     NSString* var = NSStringFromRange(cursorPos);
+    [localVsServer2 addObject:var];
     [undoArray2 addObject:var];
     [undoArray3 addObject:current3];
 }
@@ -219,6 +229,7 @@
         NSString* var = [undoArray2 lastObject];
         [undoArray2 removeLastObject];
         cursorPos = NSRangeFromString(var);
+        cursorPos.length = 0;
         current3 = [undoArray3 lastObject];
         [undoArray3 removeLastObject];
     }
@@ -239,10 +250,14 @@
         msg->set_action(false);
     }
     msg->set_index(cursorPos.location - 1);
+    [localVsServer1 addObject:anObject];
+    [localVsServer3 addObject:current3];
     NSData* toBroadcast = dataForProtoBufMessage(*msg);
-    [[self client] broadcast:toBroadcast eventType:[self userName]];
+    int32_t submissionId = [[self client] broadcast:toBroadcast eventType:[self userName]];
     [redoArray1 addObject:anObject];
+    cursorPos.length = submissionId;
     NSString* var = NSStringFromRange(cursorPos);
+    [localVsServer2 addObject:var];
     [redoArray2 addObject:var];
     [redoArray3 addObject:current3];
 }
@@ -257,6 +272,7 @@
         NSString* var = [redoArray2 lastObject];
         [redoArray2 removeLastObject];
         cursorPos = NSRangeFromString(var);
+        cursorPos.length = 0;
         current3 = [redoArray3 lastObject];
         [redoArray3 removeLastObject];
     }
@@ -443,14 +459,78 @@
     details::Event *msg = new details::Event();
     parseDelimitedProtoBufMessageFromData(*msg, input);
     readonly = true;
+    NSString *temp = [NSString stringWithCString:msg->variable().c_str() encoding:[NSString defaultCStringEncoding]];
+    [localVsServer1 addObject:temp];
+    NSRange var;
+    var.location = msg->index();
+    var.length = -1;
+    NSString* temp2 = NSStringFromRange(var);
+    [localVsServer2 addObject:temp2];
     if(!msg->action())
     {
+        [localVsServer3 addObject:@"false"];
         [self foreignDelete:msg->index()];
     }
     else
     {
-        NSString *temp = [NSString stringWithCString:msg->variable().c_str() encoding:[NSString defaultCStringEncoding]];
+        [localVsServer3 addObject:@"true"];
         [self foreignInsert:temp at:msg->index()];
+    }
+    readonly = false;
+}
+
+- (void)rollItBack:(int32_t)number
+{
+    readonly = true;
+    BOOL notfound = true;
+    while(notfound && localVsServer2.count > 0)
+    {
+        NSString* temp = [localVsServer1 lastObject];
+        [localVsServer1 removeLastObject];
+        NSString* var = [localVsServer2 lastObject];
+        [localVsServer2 removeLastObject];
+        NSRange isit = NSRangeFromString(var);
+        NSString* temp2 = [localVsServer3 lastObject];
+        [localVsServer3 removeLastObject];
+        if([temp2 isEqualToString:false_])
+        {
+            [self foreignInsert:temp at:isit.location];
+        }
+        else
+        {
+            [self foreignDelete:isit.location - 1];
+        }
+        if(isit.length == number)
+        {
+            notfound = false;
+        }
+        else
+        {
+            [rewind1 addObject:temp];
+            [rewind2 addObject:var];
+            [rewind3 addObject:temp2];
+        }
+    }
+    while(rewind2.count > 0)
+    {
+        NSString* temp = [rewind1 lastObject];
+        [rewind1 removeLastObject];
+        NSString* var = [rewind2 lastObject];
+        [rewind2 removeLastObject];
+        NSRange isit = NSRangeFromString(var);
+        NSString* temp2 = [rewind3 lastObject];
+        [rewind3 removeLastObject];
+        [localVsServer1 addObject:temp];
+        [localVsServer2 addObject:var];
+        [localVsServer2 addObject:temp2];
+        if([temp2 isEqualToString:true_])
+        {
+            [self foreignInsert:temp at:isit.location];
+        }
+        else
+        {
+            [self foreignDelete:isit.location];
+        }
     }
     readonly = false;
 }
