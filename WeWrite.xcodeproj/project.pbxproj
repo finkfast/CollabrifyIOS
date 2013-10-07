@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0094A3F18024F3F009E0E2E /* Collabrify.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C0094A3E18024F3E009E0E2E /* Collabrify.bundle */; };
+		C0094ABA18024FCE009E0E2E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0094AB918024FCE009E0E2E /* SystemConfiguration.framework */; };
 		C0831A1317E774B9008EA3F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0831A1217E774B9008EA3F9 /* UIKit.framework */; };
 		C0831A1517E774B9008EA3F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0831A1417E774B9008EA3F9 /* Foundation.framework */; };
 		C0831A1717E774B9008EA3F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0831A1617E774B9008EA3F9 /* CoreGraphics.framework */; };
@@ -66,6 +68,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C0094A3E18024F3E009E0E2E /* Collabrify.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Collabrify.bundle; sourceTree = "<group>"; };
+		C0094AB918024FCE009E0E2E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C045AAF717F6100A002A9118 /* LimitedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedTextView.h; sourceTree = "<group>"; };
 		C0831A0F17E774B9008EA3F9 /* WeWrite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeWrite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0831A1217E774B9008EA3F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -188,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0094ABA18024FCE009E0E2E /* SystemConfiguration.framework in Frameworks */,
 				E6437F2217F789BE0099F4DA /* libstdc++.dylib in Frameworks */,
 				E63A9E5A17F787970065BEF8 /* libz.dylib in Frameworks */,
 				C0831A3617E774FB008EA3F9 /* Collabrify.framework in Frameworks */,
@@ -203,6 +208,7 @@
 		C0831A0617E774B9008EA3F9 = {
 			isa = PBXGroup;
 			children = (
+				C0094AB918024FCE009E0E2E /* SystemConfiguration.framework */,
 				E6437F2117F789BE0099F4DA /* libstdc++.dylib */,
 				E63A9E5917F787970065BEF8 /* libz.dylib */,
 				C0831A3517E774FB008EA3F9 /* Collabrify.framework */,
@@ -247,6 +253,7 @@
 				C045AAF717F6100A002A9118 /* LimitedTextView.h */,
 				E6437F2617F7A9910099F4DA /* bufferStuff.mm */,
 				E6437F2717F7A9910099F4DA /* bufferStuff.h */,
+				C0094A3E18024F3E009E0E2E /* Collabrify.bundle */,
 			);
 			path = WeWrite;
 			sourceTree = "<group>";
@@ -463,6 +470,7 @@
 				E63A9E3017F7871B0065BEF8 /* golden_packed_fields_message in Resources */,
 				E63A9E3117F7871B0065BEF8 /* text_format_unittest_data.txt in Resources */,
 				E63A9E3217F7871B0065BEF8 /* text_format_unittest_extensions_data.txt in Resources */,
+				C0094A3F18024F3F009E0E2E /* Collabrify.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,7 +612,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WeWrite/WeWrite-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/WeWrite\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/WeWrite\"",
+					"\"$(SRCROOT)/WeWrite/Google Protocol Buffers\"",
+				);
 				INFOPLIST_FILE = "WeWrite/WeWrite-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -621,7 +632,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WeWrite/WeWrite-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/WeWrite\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/WeWrite\"",
+					"\"$(SRCROOT)/WeWrite/Google Protocol Buffers\"",
+				);
 				INFOPLIST_FILE = "WeWrite/WeWrite-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
