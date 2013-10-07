@@ -12,6 +12,7 @@
 @interface ASIViewController () < CollabrifyClientDelegate, CollabrifyClientDataSource>
 
 @property (strong, nonatomic) CollabrifyClient *client;
+@property (strong, nonatomic) NSArray *tags;
 
 
 @end
@@ -31,9 +32,17 @@
                                                     accessToken:@"XY3721425NoScOpE"
                                                  getLatestEvent:NO
                                                           error:&error]];
+        [self setTags:@[@"someTag"]];
         [[self client] setDelegate:self];
         [[self client] setDataSource:self];
     }
+}
+
+- (IBAction)leaveSession:(id)sender
+{
+    [[self client] leaveAndDeleteSession:YES completionHandler:^(BOOL success, CollabrifyError *error) {
+        //
+    }];
 }
 
 - (void)viewDidLoad
