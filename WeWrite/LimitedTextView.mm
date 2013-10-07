@@ -202,6 +202,7 @@
     }
     msg->set_index(cursorPos.location);
     NSData* toBroadcast = dataForProtoBufMessage(*msg);
+    [[self client] broadcast:toBroadcast eventType:@""];
     [undoArray1 addObject:anObject];
     NSString* var = NSStringFromRange(cursorPos);
     [undoArray2 addObject:var];
@@ -239,6 +240,7 @@
     }
     msg->set_index(cursorPos.location);
     NSData* toBroadcast = dataForProtoBufMessage(*msg);
+    [[self client] broadcast:toBroadcast eventType:@""];
     [redoArray1 addObject:anObject];
     NSString* var = NSStringFromRange(cursorPos);
     [redoArray2 addObject:var];
@@ -453,6 +455,11 @@
     readonly = false;
 }
 
+- (void) client:(CollabrifyClient *)client receivedEventWithOrderID:(int64_t)orderID submissionRegistrationID:(int32_t)submissionRegistrationID eventType:(NSString *)eventType data:(NSData *)data
+{
+    NSLog(@"Server listener is called");
+    [self receiveEvent:data];
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
