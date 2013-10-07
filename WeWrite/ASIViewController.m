@@ -108,6 +108,7 @@
 {
     if([[alertView buttonTitleAtIndex:0] isEqualToString:@"Enter"])
     {
+        [[[self text] limit] setHidden:false];
         sessionName = [[alertView textFieldAtIndex:0] text];
         __block CollabrifySession *session = nil;
         [self.client listSessionsWithTags:[self tags]
@@ -135,6 +136,8 @@
                           }
                           else
                           {
+                              UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please make sure you have a wireless connection and that you have disconnected from all previous sessions" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+                              [alert show];
                               NSLog(@"Failed to Join Session");
                           }
                       }];
@@ -153,6 +156,8 @@
                           }
                           else
                           {
+                              UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please make sure you have a wireless connection and that you have disconnected from all previous sessions" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+                              [alert show];
                               NSLog(@"Failed to Create Session");
                           }
                       }];
@@ -161,6 +166,10 @@
 
              }
          }];
+    }
+    if([[alertView buttonTitleAtIndex:0] isEqualToString:@"Enter"])
+    {
+        [[[self text] limit] setHidden:true];
     }
 }
 

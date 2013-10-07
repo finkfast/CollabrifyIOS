@@ -232,13 +232,13 @@
     msg->set_variable(temp);
     if([current3 isEqualToString:@"false"])
     {
-        msg->set_action(false);
+        msg->set_action(true);
     }
     else
     {
-        msg->set_action(true);
+        msg->set_action(false);
     }
-    msg->set_index(cursorPos.location);
+    msg->set_index(cursorPos.location - 1);
     NSData* toBroadcast = dataForProtoBufMessage(*msg);
     [[self client] broadcast:toBroadcast eventType:[self userName]];
     [redoArray1 addObject:anObject];
