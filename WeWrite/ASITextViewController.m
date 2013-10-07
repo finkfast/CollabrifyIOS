@@ -44,6 +44,10 @@
     {
         [[self limit] setClient:[self client]];
     }
+    if(![[self limit] userName])
+    {
+        [[self limit] setUserName:[self userName]];
+    }
 }
 
 - (void)viewDidLoad

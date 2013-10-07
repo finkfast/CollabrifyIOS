@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSArray *tags;
 @property (strong, nonatomic) NSString* isConnected;
 @property (strong, nonatomic) ASITextViewController* text;
+@property (strong, nonatomic) NSString* userName;
 
 @end
 
@@ -28,12 +29,13 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    [self setUserName:@"josephfinkel92@gmail.com"];
     [super viewWillAppear:animated];
     if (![self client])
     {
         //From how to integrate collabrify document
         NSError *error;
-        [self setClient:[[CollabrifyClient alloc] initWithGmail:@"josephfinkel92@gmail.com"
+        [self setClient:[[CollabrifyClient alloc] initWithGmail:[self userName]
                                                     displayName:@"User's Display Name"
                                                    accountGmail:@"441fall2013@umich.edu"
                                                     accessToken:@"XY3721425NoScOpE"
@@ -175,6 +177,7 @@
         [self setText:segue.destinationViewController];
         [self text].client = [self client];
         [self text].isConnected = [self isConnected];
+        [self text].userName = [self userName];
         /*
         destASIView.limit = [self limit];
         destASIView.limit.client = [[self limit] client];
@@ -183,10 +186,13 @@
 }
 -(void) client:(CollabrifyClient *)client receivedEventWithOrderID:(int64_t)orderID submissionRegistrationID:(int32_t)submissionRegistrationID eventType:(NSString *)eventType data:(NSData *)data
 {
-    NSLog(@"I hear ya");
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[[self text] limit]receiveEvent:data];
-    });
+    if(![eventType isEqualToString:[self userName]])
+    {
+        NSLog(@"I hear ya");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[[self text] limit]receiveEvent:data];
+        });
+    }
 }
 
 @end

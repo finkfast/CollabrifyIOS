@@ -26,6 +26,7 @@
 }
 
 @property (strong, nonatomic) CollabrifyClient* client;
+@property (strong, nonatomic) NSString* userName;
 
 - (void)undo;
 - (void)redo;

@@ -202,7 +202,7 @@
     }
     msg->set_index(cursorPos.location);
     NSData* toBroadcast = dataForProtoBufMessage(*msg);
-    [[self client] broadcast:toBroadcast eventType:@""];
+    [[self client] broadcast:toBroadcast eventType:[self userName]];
     [undoArray1 addObject:anObject];
     NSString* var = NSStringFromRange(cursorPos);
     [undoArray2 addObject:var];
@@ -240,7 +240,7 @@
     }
     msg->set_index(cursorPos.location);
     NSData* toBroadcast = dataForProtoBufMessage(*msg);
-    [[self client] broadcast:toBroadcast eventType:@""];
+    [[self client] broadcast:toBroadcast eventType:[self userName]];
     [redoArray1 addObject:anObject];
     NSString* var = NSStringFromRange(cursorPos);
     [redoArray2 addObject:var];

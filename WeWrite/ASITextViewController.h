@@ -20,5 +20,6 @@
 @property (strong, nonatomic) NSArray *tags;
 @property (strong, nonatomic) NSString* isConnected;
 @property (strong, nonatomic) LimitedTextView* limit;
+@property (strong, nonatomic) NSString* userName;
 
 @end
