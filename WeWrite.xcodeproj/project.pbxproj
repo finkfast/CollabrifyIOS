@@ -82,7 +82,7 @@
 		C0831A2817E774B9008EA3F9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C0831A2B17E774B9008EA3F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		C0831A2D17E774B9008EA3F9 /* ASIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASIViewController.h; sourceTree = "<group>"; };
-		C0831A2E17E774B9008EA3F9 /* ASIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASIViewController.m; sourceTree = "<group>"; };
+		C0831A2E17E774B9008EA3F9 /* ASIViewController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; path = ASIViewController.m; sourceTree = "<group>"; };
 		C0831A3517E774FB008EA3F9 /* Collabrify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Collabrify.framework; path = "../collabrify-client-ios/Collabrify.framework"; sourceTree = "<group>"; };
 		E63A9CC417F787000065BEF8 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		E63A9D2417F7871B0065BEF8 /* descriptor.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = descriptor.cc; sourceTree = "<group>"; };

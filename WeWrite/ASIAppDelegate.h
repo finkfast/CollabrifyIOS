@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Collabrify/Collabrify.h>
 #import "LimitedTextView.h"
 
 @interface ASIAppDelegate : UIResponder <UIApplicationDelegate>
