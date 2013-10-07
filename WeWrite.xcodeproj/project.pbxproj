@@ -20,7 +20,6 @@
 		C0831A2917E774B9008EA3F9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0831A2817E774B9008EA3F9 /* Default-568h@2x.png */; };
 		C0831A2C17E774B9008EA3F9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0831A2A17E774B9008EA3F9 /* MainStoryboard.storyboard */; };
 		C0831A2F17E774B9008EA3F9 /* ASIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0831A2E17E774B9008EA3F9 /* ASIViewController.m */; };
-		C0831A3617E774FB008EA3F9 /* Collabrify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0831A3517E774FB008EA3F9 /* Collabrify.framework */; };
 		E63A9DFA17F7871B0065BEF8 /* descriptor.cc in Sources */ = {isa = PBXBuildFile; fileRef = E63A9D2417F7871B0065BEF8 /* descriptor.cc */; };
 		E63A9DFB17F7871B0065BEF8 /* descriptor.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = E63A9D2617F7871B0065BEF8 /* descriptor.pb.cc */; };
 		E63A9DFC17F7871B0065BEF8 /* descriptor.proto in Resources */ = {isa = PBXBuildFile; fileRef = E63A9D2817F7871B0065BEF8 /* descriptor.proto */; };
@@ -65,6 +64,7 @@
 		E6437F2517F7A6320099F4DA /* data.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = E6437F2317F7A6320099F4DA /* data.pb.cc */; };
 		E6437F2817F7A9920099F4DA /* bufferStuff.mm in Sources */ = {isa = PBXBuildFile; fileRef = E6437F2617F7A9910099F4DA /* bufferStuff.mm */; };
 		E6A83FC21802208600BA54B9 /* LimitedTextView.mm in Sources */ = {isa = PBXBuildFile; fileRef = E6A83FC11802208600BA54B9 /* LimitedTextView.mm */; };
+		E6D83AC918025849000E8225 /* Collabrify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D83AC818025849000E8225 /* Collabrify.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,8 +87,6 @@
 		C0831A2B17E774B9008EA3F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		C0831A2D17E774B9008EA3F9 /* ASIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASIViewController.h; sourceTree = "<group>"; };
 		C0831A2E17E774B9008EA3F9 /* ASIViewController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; path = ASIViewController.m; sourceTree = "<group>"; };
-		C0831A3517E774FB008EA3F9 /* Collabrify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Collabrify.framework; path = "../collabrify-client-ios/Collabrify.framework"; sourceTree = "<group>"; };
-		E63A9CC417F787000065BEF8 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		E63A9D2417F7871B0065BEF8 /* descriptor.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = descriptor.cc; sourceTree = "<group>"; };
 		E63A9D2517F7871B0065BEF8 /* descriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = descriptor.h; sourceTree = "<group>"; };
 		E63A9D2617F7871B0065BEF8 /* descriptor.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = descriptor.pb.cc; sourceTree = "<group>"; };
@@ -185,6 +183,8 @@
 		E6437F2617F7A9910099F4DA /* bufferStuff.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = bufferStuff.mm; sourceTree = "<group>"; };
 		E6437F2717F7A9910099F4DA /* bufferStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bufferStuff.h; sourceTree = "<group>"; };
 		E6A83FC11802208600BA54B9 /* LimitedTextView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LimitedTextView.mm; sourceTree = "<group>"; };
+		E6D83AC818025849000E8225 /* Collabrify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Collabrify.framework; sourceTree = "<group>"; };
+		E6D83ACA1802587C000E8225 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,10 +195,10 @@
 				C0094ABA18024FCE009E0E2E /* SystemConfiguration.framework in Frameworks */,
 				E6437F2217F789BE0099F4DA /* libstdc++.dylib in Frameworks */,
 				E63A9E5A17F787970065BEF8 /* libz.dylib in Frameworks */,
-				C0831A3617E774FB008EA3F9 /* Collabrify.framework in Frameworks */,
 				C0831A1317E774B9008EA3F9 /* UIKit.framework in Frameworks */,
 				C0831A1517E774B9008EA3F9 /* Foundation.framework in Frameworks */,
 				C0831A1717E774B9008EA3F9 /* CoreGraphics.framework in Frameworks */,
+				E6D83AC918025849000E8225 /* Collabrify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,10 +208,10 @@
 		C0831A0617E774B9008EA3F9 = {
 			isa = PBXGroup;
 			children = (
+				E6D83AC818025849000E8225 /* Collabrify.framework */,
 				C0094AB918024FCE009E0E2E /* SystemConfiguration.framework */,
 				E6437F2117F789BE0099F4DA /* libstdc++.dylib */,
 				E63A9E5917F787970065BEF8 /* libz.dylib */,
-				C0831A3517E774FB008EA3F9 /* Collabrify.framework */,
 				C0831A1817E774B9008EA3F9 /* WeWrite */,
 				C0831A1117E774B9008EA3F9 /* Frameworks */,
 				C0831A1017E774B9008EA3F9 /* Products */,
@@ -240,10 +240,10 @@
 			isa = PBXGroup;
 			children = (
 				E6437F2317F7A6320099F4DA /* data.pb.cc */,
+				E6D83ACA1802587C000E8225 /* config.h */,
 				E6437F2417F7A6320099F4DA /* data.pb.h */,
 				E6A83FC11802208600BA54B9 /* LimitedTextView.mm */,
 				E63A9CC517F7871A0065BEF8 /* google */,
-				E63A9CC417F787000065BEF8 /* config.h */,
 				C0831A2117E774B9008EA3F9 /* ASIAppDelegate.h */,
 				C0831A2217E774B9008EA3F9 /* ASIAppDelegate.m */,
 				C0831A2A17E774B9008EA3F9 /* MainStoryboard.storyboard */,
@@ -609,6 +609,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../collabrify-client-ios\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WeWrite/WeWrite-Prefix.pch";
@@ -629,6 +630,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../collabrify-client-ios\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WeWrite/WeWrite-Prefix.pch";
