@@ -207,14 +207,14 @@
         msg->set_action(true);
     }
     msg->set_index(cursorPos.location);
-    [localVsServer1 addObject:anObject];
-    [localVsServer3 addObject:current3];
     NSData* toBroadcast = dataForProtoBufMessage(*msg);
     int32_t submissionId = [[self client] broadcast:toBroadcast eventType:[self userName]];
-    [undoArray1 addObject:anObject];
     cursorPos.length = submissionId;
     NSString* var = NSStringFromRange(cursorPos);
+    [localVsServer1 addObject:anObject];
     [localVsServer2 addObject:var];
+    [localVsServer3 addObject:current3];
+    [undoArray1 addObject:anObject];
     [undoArray2 addObject:var];
     [undoArray3 addObject:current3];
 }
@@ -250,14 +250,14 @@
         msg->set_action(false);
     }
     msg->set_index(cursorPos.location - 1);
-    [localVsServer1 addObject:anObject];
-    [localVsServer3 addObject:current3];
     NSData* toBroadcast = dataForProtoBufMessage(*msg);
     int32_t submissionId = [[self client] broadcast:toBroadcast eventType:[self userName]];
-    [redoArray1 addObject:anObject];
     cursorPos.length = submissionId;
     NSString* var = NSStringFromRange(cursorPos);
+    [localVsServer1 addObject:anObject];
     [localVsServer2 addObject:var];
+    [localVsServer3 addObject:current3];
+    [redoArray1 addObject:anObject];
     [redoArray2 addObject:var];
     [redoArray3 addObject:current3];
 }

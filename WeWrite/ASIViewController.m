@@ -204,11 +204,11 @@
     }
     else
     {
-        NSLog(@"Time to Rewind");
+/*        NSLog(@"Time to Rewind");
         [[[self text] limit] rollItBack:submissionRegistrationID];
         dispatch_async(dispatch_get_main_queue(), ^{
             [[[self text] limit]receiveEvent:data];
-        });
+        });*/
     }
 }
 
