@@ -8,22 +8,23 @@
 
 #import "ASIViewController.h"
 #import <Collabrify/Collabrify.h>
+#import "ASITextViewController.h"
 
-@interface ASIViewController () < CollabrifyClientDelegate, CollabrifyClientDataSource>
+@interface ASIViewController () <CollabrifyClientDelegate, CollabrifyClientDataSource>
 {
     NSString* sessionName;
-    LimitedTextView* IBOutlet limit1;
+    //LimitedTextView* IBOutlet limit1;
 }
 
 @property (strong, nonatomic) CollabrifyClient *client;
 @property (strong, nonatomic) NSArray *tags;
 @property (strong, nonatomic) NSString* isConnected;
-@property (strong, nonatomic) LimitedTextView* limit;
-
+@property (strong, nonatomic) ASITextViewController* text;
 
 @end
 
 @implementation ASIViewController
+
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -46,15 +47,19 @@
     {
         [self setIsConnected:@"false"];
     }
-    if (!limit1)
+    if (![self text])
     {
-        limit1 = [LimitedTextView alloc];
-    }
+        [self setText:[ASITextViewController alloc]];
+    }/*
+    //if (!limit1)
+    //{
+    //    limit1 = [LimitedTextView alloc];
+    //}
     [self setLimit:limit1];
     if(![[self limit] client])
     {
         [[self limit] setClient:[self client]];
-    }
+    }*/
 }
 
 - (IBAction)leaveSessionButtonAction:(id)sender
@@ -167,12 +172,21 @@
 {
     if([segue.identifier isEqualToString:@"moveToTextEditor"])
     {
-        ASIViewController *destASIView = segue.destinationViewController;
-        destASIView.client = [self client];
-        destASIView.isConnected = [self isConnected];
+        [self setText:segue.destinationViewController];
+        [self text].client = [self client];
+        [self text].isConnected = [self isConnected];
+        /*
         destASIView.limit = [self limit];
         destASIView.limit.client = [[self limit] client];
+        destASIView.limit.text = [self limit].text;*/
     }
+}
+-(void) client:(CollabrifyClient *)client receivedEventWithOrderID:(int64_t)orderID submissionRegistrationID:(int32_t)submissionRegistrationID eventType:(NSString *)eventType data:(NSData *)data
+{
+    NSLog(@"I hear ya");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[[self text] limit]receiveEvent:data];
+    });
 }
 
 @end

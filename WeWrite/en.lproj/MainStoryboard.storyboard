@@ -19,10 +19,10 @@
             </objects>
             <point key="canvasLocation" x="-317" y="-709"/>
         </scene>
-        <!--View Controller - Collabrify WeWrite-->
+        <!--Text View Controller - Collabrify WeWrite-->
         <scene sceneID="5">
             <objects>
-                <viewController id="2" customClass="ASIViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="ASITextViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -49,7 +49,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1As-nM-fr0">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="04d-xN-nGR"/>
-                                    <constraint firstAttribute="width" constant="83" id="HoE-eF-Ekr"/>
+                                    <constraint firstAttribute="width" constant="160" id="lGz-gf-h2G"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal">
@@ -69,8 +69,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X8g-Wf-aGW">
                                 <color key="backgroundColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="87" id="W8z-aa-sLE"/>
-                                    <constraint firstAttribute="height" constant="44" id="ofY-ER-uzo"/>
+                                    <constraint firstAttribute="width" constant="160" id="D07-VK-MKb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal">
@@ -93,10 +92,11 @@
                             <constraint firstItem="vQa-h0-0QJ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="1mI-K5-mT0"/>
                             <constraint firstItem="X8g-Wf-aGW" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="2tS-NG-aHg"/>
                             <constraint firstItem="vQa-h0-0QJ" firstAttribute="top" secondItem="3" secondAttribute="top" constant="44" id="8U6-zz-w0t"/>
-                            <constraint firstItem="1As-nM-fr0" firstAttribute="top" secondItem="3" secondAttribute="top" constant="-1" id="KcO-Fr-SsP"/>
+                            <constraint firstItem="X8g-Wf-aGW" firstAttribute="top" secondItem="1As-nM-fr0" secondAttribute="top" type="default" id="Jef-oq-jis"/>
                             <constraint firstItem="1As-nM-fr0" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="QEy-BC-tJy"/>
-                            <constraint firstItem="X8g-Wf-aGW" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="j67-9I-WY1"/>
+                            <constraint firstItem="X8g-Wf-aGW" firstAttribute="bottom" secondItem="1As-nM-fr0" secondAttribute="bottom" type="default" id="uj9-yd-oX6"/>
                             <constraint firstItem="vQa-h0-0QJ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="vIh-gj-4ZT"/>
+                            <constraint firstItem="X8g-Wf-aGW" firstAttribute="top" secondItem="3" secondAttribute="top" constant="-1" id="vkz-w5-SGU"/>
                             <constraint firstItem="vQa-h0-0QJ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="x0d-P8-YfY"/>
                         </constraints>
                     </view>
@@ -154,7 +154,7 @@
                                 </state>
                                 <connections>
                                     <action selector="viewTextEditorAction:" destination="SsN-Ht-eEx" eventType="touchUpInside" id="HZ3-u2-3M1"/>
-                                    <segue destination="2" kind="push" identifier="moveToTextEditor" id="4fn-yY-CvH"/>
+                                    <segue destination="2" kind="push" identifier="moveToTextEditor" id="n18-NH-YXw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -178,14 +178,11 @@
         </scene>
     </scenes>
     <classes>
+        <class className="ASITextViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ASITextViewController.h"/>
+        </class>
         <class className="ASIViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ASIViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createJoinButtonAction:"/>
-                <relationship kind="action" name="leaveSessionButtonAction:"/>
-                <relationship kind="action" name="viewTextEditorAction:"/>
-                <relationship kind="outlet" name="limit1" candidateClass="LimitedTextView"/>
-            </relationships>
         </class>
         <class className="LimitedTextView" superclassName="UITextView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LimitedTextView.h"/>

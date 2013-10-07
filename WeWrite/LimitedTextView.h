@@ -23,7 +23,6 @@
     NSString* false_;
     NSString* true_;
     BOOL readonly;
-    int currentSize;
 }
 
 @property (strong, nonatomic) CollabrifyClient* client;

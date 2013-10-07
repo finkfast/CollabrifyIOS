@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C0094A3F18024F3F009E0E2E /* Collabrify.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C0094A3E18024F3E009E0E2E /* Collabrify.bundle */; };
 		C0094ABA18024FCE009E0E2E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0094AB918024FCE009E0E2E /* SystemConfiguration.framework */; };
+		C0094ABD1802BF63009E0E2E /* ASITextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0094ABC1802BF62009E0E2E /* ASITextViewController.m */; };
 		C0831A1317E774B9008EA3F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0831A1217E774B9008EA3F9 /* UIKit.framework */; };
 		C0831A1517E774B9008EA3F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0831A1417E774B9008EA3F9 /* Foundation.framework */; };
 		C0831A1717E774B9008EA3F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0831A1617E774B9008EA3F9 /* CoreGraphics.framework */; };
@@ -70,6 +71,8 @@
 /* Begin PBXFileReference section */
 		C0094A3E18024F3E009E0E2E /* Collabrify.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Collabrify.bundle; sourceTree = "<group>"; };
 		C0094AB918024FCE009E0E2E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C0094ABB1802BF62009E0E2E /* ASITextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASITextViewController.h; sourceTree = "<group>"; };
+		C0094ABC1802BF62009E0E2E /* ASITextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASITextViewController.m; sourceTree = "<group>"; };
 		C045AAF717F6100A002A9118 /* LimitedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedTextView.h; sourceTree = "<group>"; };
 		C0831A0F17E774B9008EA3F9 /* WeWrite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeWrite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0831A1217E774B9008EA3F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -247,6 +250,8 @@
 				C0831A2117E774B9008EA3F9 /* ASIAppDelegate.h */,
 				C0831A2217E774B9008EA3F9 /* ASIAppDelegate.m */,
 				C0831A2A17E774B9008EA3F9 /* MainStoryboard.storyboard */,
+				C0094ABB1802BF62009E0E2E /* ASITextViewController.h */,
+				C0094ABC1802BF62009E0E2E /* ASITextViewController.m */,
 				C0831A2D17E774B9008EA3F9 /* ASIViewController.h */,
 				C0831A2E17E774B9008EA3F9 /* ASIViewController.m */,
 				C0831A1917E774B9008EA3F9 /* Supporting Files */,
@@ -521,6 +526,7 @@
 				E6437F2517F7A6320099F4DA /* data.pb.cc in Sources */,
 				E6437F2817F7A9920099F4DA /* bufferStuff.mm in Sources */,
 				E6A83FC21802208600BA54B9 /* LimitedTextView.mm in Sources */,
+				C0094ABD1802BF63009E0E2E /* ASITextViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

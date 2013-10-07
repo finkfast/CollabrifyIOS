@@ -22,7 +22,6 @@
         current = @"";
         //current3 = @"false";
         //cursorPos = [self selectedRange];
-        currentSize = 0;
         undoArray1 = [[NSMutableArray alloc] init];
         redoArray1 = [[NSMutableArray alloc] init];
         undoArray2 = [[NSMutableArray alloc] init];
@@ -36,6 +35,7 @@
     return self;
 }
 
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if(self = [super initWithCoder:aDecoder])
@@ -46,7 +46,6 @@
     current = @"";
     //current3 = @"false";
     //cursorPos = [self selectedRange];
-    currentSize = 0;
     undoArray1 = [[NSMutableArray alloc] init];
     redoArray1 = [[NSMutableArray alloc] init];
     undoArray2 = [[NSMutableArray alloc] init];
@@ -55,6 +54,7 @@
     redoArray3 = [[NSMutableArray alloc] init];
     [[self client] setDelegate:self];
     [[self client] setDataSource:self];
+    //[[self client] ]
     readonly = false;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
@@ -454,12 +454,13 @@
     }
     readonly = false;
 }
-
+/*
 - (void) client:(CollabrifyClient *)client receivedEventWithOrderID:(int64_t)orderID submissionRegistrationID:(int32_t)submissionRegistrationID eventType:(NSString *)eventType data:(NSData *)data
 {
     NSLog(@"Server listener is called");
     [self receiveEvent:data];
 }
+*/
 
 /*
 // Only override drawRect: if you perform custom drawing.
