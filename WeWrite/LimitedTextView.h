@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Collabrify/Collabrify.h>
 
-@interface LimitedTextView : UITextView <UITextViewDelegate>
+@interface LimitedTextView : UITextView <UITextViewDelegate, CollabrifyClientDelegate, CollabrifyClientDataSource>
 {
     NSMutableArray* undoArray1;//char
     NSMutableArray* undoArray2;//index
@@ -24,6 +25,8 @@
     BOOL readonly;
     int currentSize;
 }
+
+@property (strong, nonatomic) CollabrifyClient* client;
 
 - (void)undo;
 - (void)redo;

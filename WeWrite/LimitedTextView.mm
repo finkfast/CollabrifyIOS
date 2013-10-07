@@ -18,7 +18,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.text = @"";
+        //self.text = @"";
         current = @"";
         //current3 = @"false";
         //cursorPos = [self selectedRange];
@@ -53,6 +53,8 @@
     redoArray2 = [[NSMutableArray alloc] init];
     undoArray3 = [[NSMutableArray alloc] init];
     redoArray3 = [[NSMutableArray alloc] init];
+    [[self client] setDelegate:self];
+    [[self client] setDataSource:self];
     readonly = false;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(AddToStack:) name:UITextViewTextDidChangeNotification object:nil];
